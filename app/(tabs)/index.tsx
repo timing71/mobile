@@ -7,7 +7,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { connectionService, createServiceForURL } from '@/components/serviceHost';
 import { useServiceContext } from '@/components/serviceHost/context';
-import { Events, Manifest, ServiceState } from '@timing71/common';
+import { Events, ServiceState } from '@timing71/common';
 //import { useRouter } from 'expo-router';
 
 export default function HomeScreen() {
@@ -21,12 +21,7 @@ export default function HomeScreen() {
     }
     const newService = createServiceForURL('https:///fiawec.tv/');
     if (newService) {
-      newService.on(Events.MANIFEST_CHANGE, (manifest: Manifest) => {
-        console.log("Manifest change", manifest)
-      })
-
       newService.on(Events.STATE_CHANGE, (state: ServiceState) => {
-        console.log("State change", state)
         setState?.(state)
       })
       newService.start(connectionService);
