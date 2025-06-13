@@ -68,4 +68,9 @@ declare module '@timing71/common' {
     protocols?: string[]
   }
 
+  export class StatExtractor {
+    constructor(colSpec: ColumnSpec)
+    get(car: Car, stat: Stat)
+  }
+
 }
