@@ -1,4 +1,5 @@
-import { StyleProp, TextStyle } from 'react-native';
+import { FlagState } from '@timing71/common';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export const classColours: Record<string, string> = {
   'p': '#FFFFFF',
@@ -134,6 +135,12 @@ export const carStateCell: Record<string, StyleProp<TextStyle>> = {
   },
   STOP: {
     color: 'grey'
+  },
+  RET: {
+    color: 'grey'
+  },
+  'N/S': {
+    color: 'grey'
   }
 }
 
@@ -149,6 +156,9 @@ export const carStateRow: Record<string, StyleProp<TextStyle>> = {
   },
   STOP: {
     backgroundColor: 'grey'
+  },
+  'N/S': {
+    color: 'yellow'
   }
 }
 
@@ -166,3 +176,67 @@ export const carStateRowAlt: Record<string, StyleProp<TextStyle>> = {
     backgroundColor: 'grey'
   }
 }
+
+export const flagStates: Record<string, StyleProp<ViewStyle & TextStyle>> = {
+  [FlagState.GREEN]: {
+    backgroundColor: '#009900',
+    color: 'white'
+  },
+  [FlagState.YELLOW]: {
+    backgroundColor: '#DDDD00',
+    color: 'black',
+  },
+  [FlagState.RED]: {
+    backgroundColor: '#990000',
+    color: 'white',
+    //animation: css`${blinkingAnim} 1s step-end alternate infinite`
+  },
+  [FlagState.SC]: {
+    backgroundColor: '#DDDD00',
+    color: 'black',
+    //animation: flashyAnim
+  },
+  [FlagState.SLOW_ZONE]: {
+    //background: 'linear-gradient(135deg, rgba(0,153,0,1) 0%, rgba(0,153,0,1) 50%, rgba(221,221,0,1) 60%, rgba(221,221,0,1) 100%)',
+    color: 'white',
+    //fill: 'url(#slow_zone)'
+  },
+  [FlagState.CAUTION]: {
+    backgroundColor: '#DDDD00',
+    color: 'black',
+    //animation: flashyAnim
+  },
+  [FlagState.FCY]: {
+    backgroundColor: '#DDDD00',
+    color: 'black',
+    //animation: flashyAnim
+  },
+  [FlagState.VSC]: {
+    backgroundColor: '#DDDD00',
+    color: 'black',
+    //animation: flashyAnim
+  },
+  [FlagState.CODE_60]: {
+    backgroundColor: '#ff53e3',
+    color: 'white',
+    //animation: flashyAnim
+  },
+  [FlagState.CODE_60_ZONE]: {
+    //background: 'linear-gradient(135deg, rgba(0,153,0,1) 0%, rgba(0,153,0,1) 50%, rgba(255,83,227,1) 60%, rgba(255,83,227,1) 100%)',
+    color: 'white',
+    //fill: 'url(#code_60_zone)'
+  },
+  [FlagState.CHEQUERED]: {
+    //background: css`left/contain repeat-x url(${chequer})`,
+    //fill: 'url(#chequer)',
+    color: 'transparent'
+  },
+  [FlagState.WHITE]: {
+    backgroundColor: 'white',
+    color: 'black'
+  },
+  [FlagState.NONE]: {
+    backgroundColor: 'black',
+    color: 'white'
+  }
+};

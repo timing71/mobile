@@ -1,19 +1,11 @@
 import { ServiceState } from '@timing71/common';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
-import { ThemedText } from '../ThemedText';
+import { SafeAreaView, Text } from 'react-native';
+import { FlagPanel } from './FlagPanel';
 import { TimingTable } from './TimingTable';
 
 type Props = {
   state?: ServiceState
 }
-
-const styles = StyleSheet.create({
-  header: {
-    fontSize: 20,
-    color: 'white',
-    textAlign: 'center'
-  }
-})
 
 export const TimingScreen = ({ state }: Props) => {
   if (!state) {
@@ -26,9 +18,7 @@ export const TimingScreen = ({ state }: Props) => {
 
   return (
     <SafeAreaView>
-      <ThemedText style={styles.header}>
-        {state.manifest.name} - {state.manifest.description}
-      </ThemedText>
+      <FlagPanel state={state} />
       <TimingTable state={state} />
     </SafeAreaView>
   )

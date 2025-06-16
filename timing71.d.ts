@@ -1,5 +1,6 @@
 import {
   ConnectionService as OriginalConnectionService,
+  FlagState as OriginalFlagState,
   Service as OriginalService,
   CreateWebsocketOptions as OriginalWSOptions
 } from '@timing71/common';
@@ -54,6 +55,8 @@ declare module '@timing71/common' {
     RETRACT_SYSTEM_MESSAGE: 'retractSystemMessage'
   };
 
+  export const FlagState: Record<string, string> = {...OriginalFlagState};
+
   export function mapServiceProvider(url: string): { new(spec: ServiceDefinition): Service } | null
 
   export interface Service extends OriginalService {
@@ -80,5 +83,7 @@ declare module '@timing71/common' {
   }
 
   export function timeInSeconds(time: number, precision: number): string;
+
+  export function dasherizeParts(...args: string[]): string;
 
 }
