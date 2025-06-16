@@ -2,7 +2,8 @@ import {
   ConnectionService as OriginalConnectionService,
   FlagState as OriginalFlagState,
   Service as OriginalService,
-  CreateWebsocketOptions as OriginalWSOptions
+  CreateWebsocketOptions as OriginalWSOptions,
+  dayjs as originalDayjs
 } from '@timing71/common';
 
 // TODO upstream these fixes into the @timing71/common package
@@ -56,6 +57,8 @@ declare module '@timing71/common' {
   };
 
   export const FlagState: Record<string, string> = {...OriginalFlagState};
+
+  export const dayjs = originalDayjs;
 
   export function mapServiceProvider(url: string): { new(spec: ServiceDefinition): Service } | null
 

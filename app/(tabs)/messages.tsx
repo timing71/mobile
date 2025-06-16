@@ -1,17 +1,15 @@
+import { MessageList } from '@/components/messages/MessageList';
 import { useServiceContext } from '@/components/serviceHost/context';
 import { RequiresService } from '@/components/serviceHost/RequiresService';
-import { TimingScreen } from '@/components/timingScreen/TimingScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function Timing() {
-
+export default function Messages() {
   const { state } = useServiceContext();
-
   return (
     <SafeAreaView>
       <RequiresService>
-        <TimingScreen state={state} />
+        <MessageList messages={state?.messages || []} />
       </RequiresService>
     </SafeAreaView>
-  );
-};
+  )
+}

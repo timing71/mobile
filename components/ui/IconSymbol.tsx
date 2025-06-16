@@ -19,6 +19,7 @@ const MAPPING = {
   'stopwatch.fill': 'timer',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'message': 'message'
 } as IconMapping;
 
 /**
