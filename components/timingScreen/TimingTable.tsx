@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   innerWrapper: {
-    marginBottom: 24
+    marginBottom: 10
   },
   table: {
     alignItems: 'flex-start',
     backgroundColor: 'black',
   },
   cell: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
     paddingVertical: 4,
     maxWidth: 250,
   },
@@ -37,8 +37,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   cellContent: {
-    color: '#FFFF00',
-    padding: 1
+    fontSize: 16
   },
   right: {
     textAlign: 'right'

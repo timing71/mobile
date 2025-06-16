@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   cellContent: {
     color: 'white',
     fontSize: 16,
-    padding: 1
   },
   centered: {
     textAlign: 'center'
