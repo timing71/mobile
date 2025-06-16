@@ -19,7 +19,7 @@ export default function HomeScreen() {
     if (service) {
       service.stop();
     }
-    const newService = createServiceForURL('https:///fiawec.tv/');
+    const newService = createServiceForURL('https://livetiming.getraceresults.com/demo');
     if (newService) {
       newService.on(Events.STATE_CHANGE, (state: ServiceState) => {
         setState?.(state)

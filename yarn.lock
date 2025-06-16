@@ -5714,6 +5714,11 @@ react-native-gesture-handler@~2.24.0:
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
 
+react-native-gifted-table@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-gifted-table/-/react-native-gifted-table-0.1.4.tgz#026635ab5ff65f93b1a9bb740bbcc8bbc200f168"
+  integrity sha512-SNwccoKxpCzGGrLHayp1L/kXKLuFtJiKklym331qJr37WnizOXQhyWxHPA6nqW0uWPKuKxPpIe8yvyjE0n6sEA==
+
 react-native-html-parser@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/react-native-html-parser/-/react-native-html-parser-0.1.0.tgz#c35de1dc325562da26e68befa423bac34505ba48"
