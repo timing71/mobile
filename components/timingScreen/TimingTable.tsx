@@ -1,6 +1,8 @@
-import { ServiceState, StatExtractor } from '@timing71/common'
-import { ScrollView, StyleSheet, Text } from 'react-native'
+import { ServiceState, Stat, StatExtractor } from '@timing71/common'
+import { ScrollView, StyleProp, StyleSheet, Text, TextStyle } from 'react-native'
 import { Cell, Row, Table } from 'react-native-gifted-table'
+import { TimingTableCell } from './TimingTableCell'
+import { carStateRow, carStateRowAlt } from './colours'
 
 type Props = {
   state: ServiceState
@@ -9,7 +11,9 @@ type Props = {
 const styles = StyleSheet.create({
   wrapper: {
     margin: 10,
-    paddingBottom: 24
+  },
+  innerWrapper: {
+    marginBottom: 24
   },
   table: {
     alignItems: 'flex-start',
@@ -33,13 +37,13 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   cellContent: {
-    color: 'white',
+    color: '#FFFF00',
     padding: 1
   },
   right: {
     textAlign: 'right'
   }
-})
+});
 
 export const TimingTable = ({ state }: Props) => {
 
@@ -47,7 +51,7 @@ export const TimingTable = ({ state }: Props) => {
 
   return (
     <ScrollView style={styles.wrapper}>
-      <ScrollView horizontal>
+      <ScrollView horizontal style={styles.innerWrapper}>
         <Table style={styles.table}>
           <Row style={styles.row}>
             <Cell
@@ -74,34 +78,53 @@ export const TimingTable = ({ state }: Props) => {
           </Row>
           {
             (state.cars || []).map(
-              (car, idx) => (
-                <Row
-                  key={car[0] as string}
-                  style={[styles.row, idx % 2 === 1 && styles.rowAlt]}
-                >
-                  <Cell
-                    render={() => <Text style={[styles.cellContent, styles.header, styles.right]}>{idx + 1}</Text>}
-                    style={[styles.cell]}
-                  />
-                  {
-                    state.manifest.colSpec.map(
-                      (stat, idx) => (
-                        <Cell
-                          key={idx}
-                          render={() => {
-                            return (
-                              <Text style={styles.cellContent}>
-                                { statExtractor.get(car, stat) }
-                              </Text>
-                            )
-                          }}
-                          style={styles.cell}
-                        />
-                      )
-                    )
+              (car, idx) => {
+                const carState = statExtractor.get(car, Stat.STATE);
+
+                const rowStyles: StyleProp<TextStyle>[] = [styles.row];
+
+                if (carStateRow[carState]) {
+                  rowStyles.push(carStateRow[carState])
+                }
+
+                if (idx % 2 === 1) {
+                  rowStyles.push(styles.rowAlt);
+                  if (carStateRowAlt[carState]) {
+                    rowStyles.push(carStateRowAlt[carState])
                   }
-                </Row>
-              )
+                }
+
+                return (
+                  <Row
+                    key={car[0] as string}
+                    style={rowStyles}
+                  >
+                    <Cell
+                      render={() => <Text style={[styles.cellContent, styles.header, styles.right]}>{idx + 1}</Text>}
+                      style={[styles.cell]}
+                    />
+                    {
+                      state.manifest.colSpec.map(
+                        (stat, idx) => (
+                          <Cell
+                            key={idx}
+                            render={() => {
+                              return (
+                                <TimingTableCell
+                                  car={car}
+                                  stat={stat}
+                                  statExtractor={statExtractor}
+                                />
+                              )
+                            }}
+                            style={styles.cell}
+                          />
+                        )
+                      )
+                    }
+                  </Row>
+                );
+              }
             )
           }
         </Table>

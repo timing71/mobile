@@ -73,4 +73,12 @@ declare module '@timing71/common' {
     get(car: Car, stat: Stat)
   }
 
+  export interface Manifest {
+    sectorTimePrecision?: number,
+    timePrecision?: number,
+    intervalPrecision?: number
+  }
+
+  export function timeInSeconds(time: number, precision: number): string;
+
 }
