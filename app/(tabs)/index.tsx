@@ -8,12 +8,16 @@ import { ThemedView } from '@/components/ThemedView';
 import { connectionService, createServiceForURL } from '@/components/serviceHost';
 import { useServiceContext } from '@/components/serviceHost/context';
 import { Events, ServiceState } from '@timing71/common';
-//import { useRouter } from 'expo-router';
+import { useNavigation } from 'expo-router';
+
+type ItIsATabNavigatorHonest = {
+  jumpTo: (slug: string)=> void
+}
 
 export default function HomeScreen() {
 
   const { service, setService, setState } = useServiceContext();
-  //const router = useRouter();
+  const navigation = useNavigation() as ItIsATabNavigatorHonest;
 
   const launch = () => {
     if (service) {
@@ -26,7 +30,7 @@ export default function HomeScreen() {
       })
       newService.start(connectionService);
       setService?.(newService);
-      //router.navigate('/timing'); // XXX this causes an app crash
+      navigation.jumpTo('timing');
     }
   }
 
