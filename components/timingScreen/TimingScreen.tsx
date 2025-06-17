@@ -1,5 +1,6 @@
 import { ServiceState } from '@timing71/common';
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { ThemedText } from '../ThemedText';
 import { Clocks } from './Clocks';
 import { FlagPanel } from './FlagPanel';
 import { TimingTable } from './TimingTable';
@@ -12,7 +13,7 @@ export const TimingScreen = ({ state }: Props) => {
   if (!state) {
     return (
       <SafeAreaView>
-        <Text>Waiting for timing data...</Text>
+        <ThemedText type='title'>Waiting for timing data...</ThemedText>
       </SafeAreaView>
     )
   }

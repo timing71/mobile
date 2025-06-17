@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 type ServiceContextType = {
   service?: Service,
-  setService?: (s: Service) => void,
+  setService?: (s: Service | undefined) => void,
   state?: ServiceState,
   setState?: (s: ServiceState) => void
 }

@@ -6,6 +6,7 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { connectionService, createServiceForURL } from '@/components/serviceHost';
+import { ServiceRunning } from '@/components/serviceHost/ServiceRunning';
 import { useServiceContext } from '@/components/serviceHost/context';
 import { Events, ServiceState } from '@timing71/common';
 import { useNavigation } from 'expo-router';
@@ -47,9 +48,11 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
+      <ServiceRunning />
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Launch TimeService demo service</ThemedText>
         <Button
+          disabled={!!service}
           onPress={launch}
           title="Go"
         />
