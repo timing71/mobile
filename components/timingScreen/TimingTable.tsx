@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     marginVertical: 6
   },
   innerWrapper: {
-    marginBottom: 10
+    marginBottom: 120
   },
   table: {
     alignItems: 'flex-start',
