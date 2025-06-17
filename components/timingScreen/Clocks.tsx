@@ -21,25 +21,34 @@ const styles = StyleSheet.create({
 });
 
 export const Clocks = ({ state }: Props) => {
+
+  const useLaps = state.session.lapsRemain !== undefined;
+  const { timeElapsed, timeRemain, lapsRemain, pauseClocks } = state.session;
+
   return (
     <View style={styles.container}>
       {
-        state.session.timeElapsed !== undefined && (
+        timeElapsed !== undefined && (
           <Clock
             caption='elapsed'
-            pause={state.session.pauseClocks}
-            seconds={state.session.timeElapsed}
+            pause={pauseClocks}
+            seconds={timeElapsed}
           />
         )
       }
       {
-        state.session.timeRemain !== undefined && (
+        !useLaps && timeRemain !== undefined && (
           <Clock
             caption='remaining'
             countdown
-            pause={state.session.pauseClocks}
-            seconds={state.session.timeRemain}
+            pause={pauseClocks}
+            seconds={timeRemain}
           />
+        )
+      }
+      {
+        useLaps && (
+          <Text style={styles.clock}>{lapsRemain} lap{ lapsRemain === 1 ? '' : 's' } remaining</Text>
         )
       }
     </View>
