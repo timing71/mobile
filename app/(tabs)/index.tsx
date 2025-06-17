@@ -5,10 +5,8 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { connectionService, createServiceForURL } from '@/components/serviceHost';
 import { ServiceRunning } from '@/components/serviceHost/ServiceRunning';
 import { useServiceContext } from '@/components/serviceHost/context';
-import { Events, ServiceState } from '@timing71/common';
 import { useNavigation } from 'expo-router';
 
 type ItIsATabNavigatorHonest = {
@@ -17,22 +15,12 @@ type ItIsATabNavigatorHonest = {
 
 export default function HomeScreen() {
 
-  const { service, setService, setState } = useServiceContext();
+  const { launchTiming, service } = useServiceContext();
   const navigation = useNavigation() as ItIsATabNavigatorHonest;
 
-  const launch = () => {
-    if (service) {
-      service.stop();
-    }
-    const newService = createServiceForURL('https://livetiming.getraceresults.com/demo');
-    if (newService) {
-      newService.on(Events.STATE_CHANGE, (state: ServiceState) => {
-        setState?.(state)
-      })
-      newService.start(connectionService);
-      setService?.(newService);
-      navigation.jumpTo('timing');
-    }
+  const launch = (url: string) => () => {
+    launchTiming(url);
+    navigation.jumpTo('timing');
   }
 
   return (
@@ -53,7 +41,7 @@ export default function HomeScreen() {
         <ThemedText type="subtitle">Launch TimeService demo service</ThemedText>
         <Button
           disabled={!!service}
-          onPress={launch}
+          onPress={launch('https://livetiming.getraceresults.com/demo')}
           title="Go"
         />
       </ThemedView>
