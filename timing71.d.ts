@@ -85,7 +85,12 @@ declare module '@timing71/common' {
     intervalPrecision?: number
   }
 
+  export interface SessionState {
+    pauseClocks?: boolean
+  }
+
   export function timeInSeconds(time: number, precision: number): string;
+  export function timeWithHours(time: number): string;
 
   export function dasherizeParts(...args: string[]): string;
 

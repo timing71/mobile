@@ -1,5 +1,6 @@
 import { ServiceState } from '@timing71/common';
 import { SafeAreaView, Text } from 'react-native';
+import { Clocks } from './Clocks';
 import { FlagPanel } from './FlagPanel';
 import { TimingTable } from './TimingTable';
 
@@ -19,6 +20,7 @@ export const TimingScreen = ({ state }: Props) => {
   return (
     <SafeAreaView>
       <FlagPanel state={state} />
+      <Clocks state={state} />
       <TimingTable state={state} />
     </SafeAreaView>
   )
