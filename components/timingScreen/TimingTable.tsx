@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 4,
     maxWidth: 250,
+    color: 'white'
   },
   row: {
     alignItems: 'flex-start',
@@ -41,6 +42,12 @@ const styles = StyleSheet.create({
   },
   right: {
     textAlign: 'right'
+  },
+  sbNewRow: {
+    backgroundColor: '#FF53E3'
+  },
+  sbNewCell: {
+    color: 'black'
   }
 });
 
@@ -79,6 +86,10 @@ export const TimingTable = ({ state }: Props) => {
             (state.cars || []).map(
               (car, idx) => {
                 const carState = statExtractor.get(car, Stat.STATE);
+                const lastLap = statExtractor.get(car, Stat.LAST_LAP);
+                const bestLap = statExtractor.get(car, Stat.BEST_LAP);
+
+                const shouldShowSB = lastLap[1] === 'sb-new' || bestLap[1] === 'sb-new';
 
                 const rowStyles: StyleProp<TextStyle>[] = [styles.row];
 
@@ -86,8 +97,14 @@ export const TimingTable = ({ state }: Props) => {
                   rowStyles.push(carStateRow[carState])
                 }
 
+                if (shouldShowSB) {
+                  rowStyles.push(styles.sbNewRow);
+                }
+
                 if (idx % 2 === 1) {
-                  rowStyles.push(styles.rowAlt);
+                  if (!shouldShowSB) {
+                    rowStyles.push(styles.rowAlt);
+                  }
                   if (carStateRowAlt[carState]) {
                     rowStyles.push(carStateRowAlt[carState])
                   }
@@ -99,7 +116,7 @@ export const TimingTable = ({ state }: Props) => {
                     style={rowStyles}
                   >
                     <Cell
-                      render={() => <Text style={[styles.cellContent, styles.header, styles.right]}>{idx + 1}</Text>}
+                      render={() => <Text style={[styles.cellContent, styles.header, styles.right, shouldShowSB && styles.sbNewCell]}>{idx + 1}</Text>}
                       style={[styles.cell]}
                     />
                     {
@@ -113,6 +130,7 @@ export const TimingTable = ({ state }: Props) => {
                                   car={car}
                                   stat={stat}
                                   statExtractor={statExtractor}
+                                  style={[styles.cell, shouldShowSB && styles.sbNewCell]}
                                 />
                               )
                             }}

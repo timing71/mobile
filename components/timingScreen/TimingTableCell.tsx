@@ -5,12 +5,12 @@ import { carStateCell, classColours, modifiers } from './colours';
 type Props = {
   car: Car,
   stat: StatType,
-  statExtractor: StatExtractor
+  statExtractor: StatExtractor,
+  style?: StyleProp<TextStyle>
 }
 
 const styles = StyleSheet.create({
   cellContent: {
-    color: 'white',
     fontSize: 16,
   },
   centered: {
@@ -21,10 +21,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export const TimingTableCell = ({ car, stat, statExtractor }: Props) => {
+export const TimingTableCell = ({ car, stat, statExtractor, style }: Props) => {
 
   const applicableStyles: StyleProp<TextStyle>[] = [
-    styles.cellContent
+    styles.cellContent,
+    style
   ];
 
   let value = statExtractor.get(car, stat);
