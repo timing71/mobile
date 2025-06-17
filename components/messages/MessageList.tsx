@@ -115,7 +115,7 @@ export const MessageList = ({ messages }: Props) => {
     <ScrollView style={styles.container}>
       {
         messages.map(
-          (msg, idx) => <MessageDisplay index={idx} key={msg[0]} message={msg} />
+          (msg, idx) => <MessageDisplay index={idx} key={idx} message={msg} />
         )
       }
     </ScrollView>
