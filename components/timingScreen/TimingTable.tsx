@@ -10,7 +10,7 @@ type Props = {
 
 const styles = StyleSheet.create({
   wrapper: {
-    margin: 10,
+    marginVertical: 6
   },
   innerWrapper: {
     marginBottom: 10
