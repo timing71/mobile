@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    'Play-Regular': require('../assets/fonts/Play/Play-Regular.ttf')
   });
 
   useEffect(

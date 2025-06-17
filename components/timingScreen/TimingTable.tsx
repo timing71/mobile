@@ -33,9 +33,13 @@ const styles = StyleSheet.create({
   rowAlt: {
     backgroundColor: Colors.app.backgroundAlt
   },
+  headerRow: {
+    borderBottomWidth: 1,
+    borderColor: Colors.app.highlight
+  },
   header: {
-    fontWeight: '600',
     color: Colors.app.highlight,
+    fontFamily: 'Play-Regular',
     textTransform: 'uppercase'
   },
   cellContent: {
@@ -61,7 +65,7 @@ export const TimingTable = ({ state }: Props) => {
     <ScrollView style={styles.wrapper}>
       <ScrollView horizontal style={styles.innerWrapper}>
         <Table style={styles.table}>
-          <Row style={styles.row}>
+          <Row style={[styles.row, styles.headerRow]}>
             <Cell
               render={() => <Text style={[styles.header, styles.right]}>Pos</Text>}
               style={styles.cell}
