@@ -1,3 +1,4 @@
+import { Colors } from '@/constants/Colors'
 import { ServiceState, Stat, StatExtractor } from '@timing71/common'
 import { ScrollView, StyleProp, StyleSheet, Text, TextStyle } from 'react-native'
 import { Cell, Row, Table } from 'react-native-gifted-table'
@@ -30,11 +31,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   rowAlt: {
-    backgroundColor: '#202020'
+    backgroundColor: Colors.app.backgroundAlt
   },
   header: {
     fontWeight: '600',
-    color: '#54FFFF',
+    color: Colors.app.highlight,
     textTransform: 'uppercase'
   },
   cellContent: {
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
   sbNewRow: {
-    backgroundColor: '#FF53E3'
+    backgroundColor: Colors.app.code60
   },
   sbNewCell: {
     color: 'black'

@@ -24,6 +24,10 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
   app: {
-    highlight: '#54FFFF'
+    background: '#000',
+    backgroundAlt: '#202020',
+    highlight: '#54FFFF',
+    text: '#FFF',
+    code60: '#FF53E3'
   }
 };

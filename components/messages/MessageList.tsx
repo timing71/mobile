@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   messageAlt: {
-    backgroundColor: '#202020'
+    backgroundColor: Colors.app.backgroundAlt
   },
   messageText: {
     color: 'white',
@@ -55,7 +55,7 @@ export const msgStyles: Record<string, StyleProp<TextStyle & ViewStyle>> = {
     color: 'white'
   },
   'code60': {
-    backgroundColor: '#ff53e3',
+    backgroundColor: Colors.app.code60,
     color: 'white'
   },
   'pb': {
@@ -65,7 +65,7 @@ export const msgStyles: Record<string, StyleProp<TextStyle & ViewStyle>> = {
     color: '#FF53E3'
   },
   'system': {
-    color: '#54FFFF'
+    color: Colors.app.highlight
   }
 }
 
