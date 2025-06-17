@@ -48,7 +48,7 @@ export default function HomeScreen() {
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Launch FIA WEC service</ThemedText>
+        <ThemedText type="subtitle">Launch TimeService demo service</ThemedText>
         <Button
           onPress={launch}
           title="Go"
