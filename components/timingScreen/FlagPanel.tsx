@@ -10,7 +10,8 @@ type Props = {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 20,
+    fontSize: 18,
+    fontFamily: 'DejaVuSans',
     color: 'white',
     textAlign: 'center',
     margin: 6

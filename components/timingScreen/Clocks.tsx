@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
     color: 'white',
     flex: 1,
     textAlign: 'center',
-    fontSize: 18
+    fontSize: 16,
+    fontFamily: 'DejaVuSans'
   }
 });
 

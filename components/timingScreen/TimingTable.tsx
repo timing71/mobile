@@ -42,9 +42,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Play-Regular',
     textTransform: 'uppercase'
   },
+  highlight: {
+    color: Colors.app.highlight
+  },
   cellContent: {
     fontSize: 16,
-    color: 'white'
+    color: 'white',
+    fontFamily: 'DejaVuSans'
   },
   right: {
     textAlign: 'right'
@@ -122,7 +126,7 @@ export const TimingTable = ({ state }: Props) => {
                     style={rowStyles}
                   >
                     <Cell
-                      render={() => <Text style={[styles.cellContent, styles.header, styles.right, shouldShowSB && styles.sbNewCell]}>{idx + 1}</Text>}
+                      render={() => <Text style={[styles.cellContent, styles.highlight, styles.right, shouldShowSB && styles.sbNewCell]}>{idx + 1}</Text>}
                       style={[styles.cell]}
                     />
                     {

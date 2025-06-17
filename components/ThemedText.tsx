@@ -33,26 +33,29 @@ const styles = StyleSheet.create({
   default: {
     fontSize: 16,
     lineHeight: 24,
+    fontFamily: 'DejaVuSans'
   },
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: '600',
+    //fontWeight: '600',
+    fontFamily: 'DejaVuSans'
   },
   title: {
     fontSize: 32,
-    fontWeight: 'bold',
     lineHeight: 32,
-    fontFamily: 'Play-Regular'
+    fontFamily: 'Play-Bold'
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: 'bold',
-    fontFamily: 'Play-Regular'
+    //fontWeight: 'bold',
+    fontFamily: 'Play-Bold',
+    color: Colors.app.highlight
   },
   link: {
     lineHeight: 30,
     fontSize: 16,
     color: '#0a7ea4',
+    fontFamily: 'DejaVuSans'
   },
 });

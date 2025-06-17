@@ -12,6 +12,8 @@ import { useEffect } from 'react';
 
 export default function RootLayout() {
   const [loaded] = useFonts({
+    'DejaVuSans': require('../assets/fonts/DejaVuSans.ttf'),
+    'Play-Bold': require('../assets/fonts/Play/Play-Bold.ttf'),
     'Play-Regular': require('../assets/fonts/Play/Play-Regular.ttf')
   });
 

@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
   },
   messageText: {
     color: 'white',
-    fontSize: 18,
-    padding: 4
+    fontSize: 16,
+    padding: 4,
+    fontFamily: 'DejaVuSans'
   },
   date: {
     color: Colors.app.highlight,
@@ -83,7 +84,7 @@ const MessageDisplay = ({ index, message }: MessageDisplayProps) => {
   const [timestamp, category, msgText, msgStyle] = message;
   const isOddRow = index % 2 === 1;
 
-  const classColour = classColours[category.toLowerCase().replaceAll(/[-/ ]/g, '')];
+  const classColour = classColours[category.toLowerCase().replaceAll(/[-/ ]/g, '')] || 'white';
 
   return (
     <View style={[
