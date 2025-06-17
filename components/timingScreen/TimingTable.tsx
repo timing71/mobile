@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   cellContent: {
-    fontSize: 16
+    fontSize: 16,
+    color: 'white'
   },
   right: {
     textAlign: 'right'
@@ -131,7 +132,7 @@ export const TimingTable = ({ state }: Props) => {
                                   car={car}
                                   stat={stat}
                                   statExtractor={statExtractor}
-                                  style={[styles.cell, shouldShowSB && styles.sbNewCell]}
+                                  style={[styles.cellContent, shouldShowSB && styles.sbNewCell]}
                                 />
                               )
                             }}
