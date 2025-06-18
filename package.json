@@ -34,7 +34,6 @@
     "react-dom": "19.0.0",
     "react-native": "0.79.3",
     "react-native-gesture-handler": "~2.24.0",
-    "react-native-gifted-table": "^0.1.4",
     "react-native-html-parser": "^0.1.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",

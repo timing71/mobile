@@ -1,9 +1,9 @@
 import { Colors } from '@/constants/Colors'
 import { ServiceState, Stat, StatExtractor } from '@timing71/common'
-import { ScrollView, StyleProp, StyleSheet, Text, TextStyle } from 'react-native'
-import { Cell, Row, Table } from 'react-native-gifted-table'
-import { TimingTableCell } from './TimingTableCell'
+import { useMemo } from 'react'
+import { ScrollView, StyleProp, StyleSheet, Text, TextStyle, View } from 'react-native'
 import { carStateRow, carStateRowAlt } from './colours'
+import { TimingTableCell } from './TimingTableCell'
 
 type Props = {
   state: ServiceState
@@ -11,20 +11,21 @@ type Props = {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginVertical: 6
+    marginVertical: 6,
   },
   innerWrapper: {
-    marginBottom: 120
+    flexDirection: 'row',
+    marginBottom: 85 // Bottom tab bar height - TODO move this to the page component
   },
   table: {
-    alignItems: 'flex-start',
-    backgroundColor: 'black',
+    alignItems: 'flex-start'
+  },
+  column: {
+    flexDirection: 'column'
   },
   cell: {
-    paddingHorizontal: 6,
-    paddingVertical: 4,
-    maxWidth: 250,
-    color: 'white'
+    maxWidth: 200,
+    color: 'white',
   },
   row: {
     alignItems: 'flex-start',
@@ -35,12 +36,17 @@ const styles = StyleSheet.create({
   },
   headerRow: {
     borderBottomWidth: 1,
-    borderColor: Colors.app.highlight
+    borderColor: Colors.app.highlight,
+    fontFamily: 'Play-Regular',
   },
   header: {
     color: Colors.app.highlight,
-    fontFamily: 'Play-Regular',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    fontSize: 16,
+    fontFamily: 'DejaVuSans',
+    height: 30,
+    paddingHorizontal: 4,
+    paddingVertical: 2
   },
   highlight: {
     color: Colors.app.highlight
@@ -48,7 +54,10 @@ const styles = StyleSheet.create({
   cellContent: {
     fontSize: 16,
     color: 'white',
-    fontFamily: 'DejaVuSans'
+    fontFamily: 'DejaVuSans',
+    height: 30,
+    paddingHorizontal: 4,
+    paddingVertical: 2
   },
   right: {
     textAlign: 'right'
@@ -63,99 +72,134 @@ const styles = StyleSheet.create({
 
 export const TimingTable = ({ state }: Props) => {
 
-  const statExtractor = new StatExtractor(state.manifest.colSpec);
+  const statExtractor = useMemo(
+    () => new StatExtractor(state.manifest.colSpec),
+    [state.manifest.colSpec]
+  );
+
+  const rowStyles = useMemo(
+    () => {
+      const stylesArr: StyleProp<TextStyle>[][] = [];
+
+      (state.cars || []).forEach(
+        (car, idx) => {
+          const carStyles: StyleProp<TextStyle>[] = [];
+
+          const carState = statExtractor.get(car, Stat.STATE);
+          const lastLap = statExtractor.get(car, Stat.LAST_LAP);
+          const bestLap = statExtractor.get(car, Stat.BEST_LAP);
+
+          const shouldShowSB = lastLap[1] === 'sb-new' || bestLap[1] === 'sb-new';
+
+          if (carStateRow[carState]) {
+            carStyles.push(carStateRow[carState])
+          }
+
+          if (shouldShowSB) {
+            carStyles.push(styles.sbNewRow);
+          }
+
+          if (idx % 2 === 1) {
+            if (!shouldShowSB) {
+              carStyles.push(styles.rowAlt);
+            }
+            if (carStateRowAlt[carState]) {
+              carStyles.push(carStateRowAlt[carState])
+            }
+          }
+          stylesArr.push(carStyles);
+        }
+      )
+
+      return stylesArr;
+    },
+    [state.cars, statExtractor]
+  )
 
   return (
     <ScrollView style={styles.wrapper}>
-      <ScrollView horizontal style={styles.innerWrapper}>
-        <Table style={styles.table}>
-          <Row style={[styles.row, styles.headerRow]}>
-            <Cell
-              render={() => <Text style={[styles.header, styles.right]}>Pos</Text>}
-              style={styles.cell}
-            />
-            {
-              state.manifest.colSpec.map(
-                (stat, idx) => (
-                  <Cell
-                    key={idx}
-                    render={() => {
-                      return (
-                        <Text style={styles.header}>
-                          { stat[0] }
-                        </Text>
-                      )
-                    }}
-                    style={styles.cell}
-                  />
-                )
-              )
-            }
-          </Row>
+      <View style={styles.innerWrapper}>
+        <View style={styles.column}>
+          <View style={styles.cell}>
+            <Text style={[styles.header, styles.right, styles.headerRow]}>Pos</Text>
+          </View>
           {
             (state.cars || []).map(
-              (car, idx) => {
-                const carState = statExtractor.get(car, Stat.STATE);
-                const lastLap = statExtractor.get(car, Stat.LAST_LAP);
-                const bestLap = statExtractor.get(car, Stat.BEST_LAP);
-
-                const shouldShowSB = lastLap[1] === 'sb-new' || bestLap[1] === 'sb-new';
-
-                const rowStyles: StyleProp<TextStyle>[] = [styles.row];
-
-                if (carStateRow[carState]) {
-                  rowStyles.push(carStateRow[carState])
-                }
-
-                if (shouldShowSB) {
-                  rowStyles.push(styles.sbNewRow);
-                }
-
-                if (idx % 2 === 1) {
-                  if (!shouldShowSB) {
-                    rowStyles.push(styles.rowAlt);
-                  }
-                  if (carStateRowAlt[carState]) {
-                    rowStyles.push(carStateRowAlt[carState])
-                  }
-                }
-
-                return (
-                  <Row
-                    key={car[0] as string}
-                    style={rowStyles}
+              (_car, idx) => (
+                <View
+                  key={idx}
+                  style={styles.cell}
+                >
+                  <Text
+                    style={[styles.header, styles.right, ...rowStyles[idx]]}
                   >
-                    <Cell
-                      render={() => <Text style={[styles.cellContent, styles.highlight, styles.right, shouldShowSB && styles.sbNewCell]}>{idx + 1}</Text>}
-                      style={[styles.cell]}
-                    />
+                    {idx + 1}
+                  </Text>
+                </View>
+              )
+            )
+          }
+        </View>
+        <View style={styles.column}>
+          <View style={styles.cell}>
+            <Text style={[styles.header, styles.right, styles.headerRow]}>Num</Text>
+          </View>
+          {
+            (state.cars || []).map(
+              (car, idx) => (
+                <View
+                  key={idx}
+                  style={styles.cell}
+                >
+                  <Text
+                    style={[styles.cellContent, ...rowStyles[idx]]}
+                  >
+                    {statExtractor.get(car, Stat.NUM)}
+                  </Text>
+                </View>
+              )
+            )
+          }
+        </View>
+        <ScrollView horizontal>
+          {
+            state.manifest.colSpec.slice(2).map(
+              (stat, idx) => {
+                return (
+                  <View
+                    key={idx}
+                    style={styles.column}
+                  >
+                    <View style={styles.cell}>
+                      <Text style={[styles.header, styles.headerRow]}>
+                        {stat[0]}
+                      </Text>
+                    </View>
+
                     {
-                      state.manifest.colSpec.map(
-                        (stat, idx) => (
-                          <Cell
+                      (state.cars || []).map(
+                        (car, idx) => (
+                          <View
                             key={idx}
-                            render={() => {
-                              return (
-                                <TimingTableCell
-                                  car={car}
-                                  stat={stat}
-                                  statExtractor={statExtractor}
-                                  style={[styles.cellContent, shouldShowSB && styles.sbNewCell]}
-                                />
-                              )
-                            }}
                             style={styles.cell}
-                          />
+                          >
+                            <TimingTableCell
+                              car={car}
+                              stat={stat}
+                              statExtractor={statExtractor}
+                              style={[styles.cellContent, ...rowStyles[idx]]}
+                            />
+                          </View>
                         )
                       )
                     }
-                  </Row>
-                );
+                  </View>
+                )
               }
             )
           }
-        </Table>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </ScrollView>
   )
 };

@@ -10,9 +10,6 @@ type Props = {
 }
 
 const styles = StyleSheet.create({
-  cellContent: {
-    fontSize: 16,
-  },
   centered: {
     textAlign: 'center'
   },
@@ -24,7 +21,6 @@ const styles = StyleSheet.create({
 export const TimingTableCell = ({ car, stat, statExtractor, style }: Props) => {
 
   const applicableStyles: StyleProp<TextStyle>[] = [
-    styles.cellContent,
     style
   ];
 
@@ -62,7 +58,10 @@ export const TimingTableCell = ({ car, stat, statExtractor, style }: Props) => {
   }
 
   return (
-    <Text style={applicableStyles}>
+    <Text
+      numberOfLines={1}
+      style={applicableStyles}
+    >
       { formatValue(value, stat[1]) }
     </Text>
   )
