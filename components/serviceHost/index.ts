@@ -1,6 +1,35 @@
 import { ConnectionService, Service, ServiceDefinition, mapServiceProvider } from '@timing71/common';
 import uuid from 'react-native-uuid';
 
+class WrappedWebsocket {
+
+  private _ws: WebSocket
+
+  constructor(url: string, protocols?: string[]) {
+    this._ws = new WebSocket(url, protocols);
+  }
+
+  on(event: string, handler: () => void) {
+    if (event === 'message') {
+      this._ws.onmessage = handler;
+    }
+    else if (event === 'open') {
+      this._ws.onopen = handler;
+    }
+    else if (event === 'close') {
+      this._ws.onclose = handler;
+    }
+  }
+
+  send(data: any) {
+    this._ws.send(data);
+  }
+
+  close() {
+    this._ws.close();
+  }
+}
+
 export const connectionService: ConnectionService = {
   fetch: async (url: string, { returnHeaders=false, ...options }={}) => {
     const response = await fetch(url, options);
@@ -11,7 +40,7 @@ export const connectionService: ConnectionService = {
     return text;
   },
   createWebsocket: (url: string, { protocols=[] }={}) => {
-    return new WebSocket(url, protocols);
+    return new WrappedWebsocket(url, protocols);
   },
   createDOMParser: () => new DOMParser()
 };

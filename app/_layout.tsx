@@ -1,10 +1,12 @@
+import 'react-native-get-random-values'; // polyfill needed by uuid
+
 import { DarkTheme, ThemeProvider } from '@react-navigation/native';
+import '@timing71/services';
+import 'expo-dev-client';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-
-import '@timing71/services';
 
 import { ServiceContextProvider } from '@/components/serviceHost/context';
 

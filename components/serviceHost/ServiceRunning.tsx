@@ -4,7 +4,7 @@ import { ThemedText } from '../ThemedText';
 import { useServiceContext } from './context';
 
 export const ServiceRunning = () => {
-  const { service, setService, state } = useServiceContext();
+  const { service, setService, state, setState } = useServiceContext();
 
   if (!service) {
     return null;
@@ -26,6 +26,7 @@ export const ServiceRunning = () => {
         onPress={() => {
           service.stop();
           setService?.(undefined);
+          setState?.(undefined);
         }}
         title='Stop'
       />

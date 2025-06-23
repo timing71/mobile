@@ -45,6 +45,22 @@ export default function HomeScreen() {
           title="Go"
         />
       </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Launch IndyCar service</ThemedText>
+        <Button
+          disabled={!!service}
+          onPress={launch('https://www.indycar.com/leaderboard')}
+          title="Go"
+        />
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Launch IMSA service</ThemedText>
+        <Button
+          disabled={!!service}
+          onPress={launch('https://livetiming.alkamelsystems.com/imsa')}
+          title="Go"
+        />
+      </ThemedView>
     </ParallaxScrollView>
   );
 }

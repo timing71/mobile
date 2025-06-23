@@ -7,7 +7,7 @@ type ServiceContextType = {
   service?: Service,
   setService?: (s: Service | undefined) => void,
   state?: ServiceState,
-  setState?: (s: ServiceState) => void
+  setState?: (s: ServiceState | undefined) => void
 }
 
 const ServiceContext = createContext<ServiceContextType>({
@@ -25,6 +25,7 @@ export const ServiceContextProvider = ({ children }: Props) => {
   const launchTiming = (url: string) => {
       if (service) {
         service.stop();
+        setState(undefined);
       }
       const newService = createServiceForURL(url);
       if (newService) {
