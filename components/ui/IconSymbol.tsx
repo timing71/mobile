@@ -19,7 +19,8 @@ const MAPPING = {
   'stopwatch.fill': 'timer',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
-  'message': 'message'
+  'message': 'message',
+  'thermometer.sun': 'area-chart'
 } as IconMapping;
 
 /**

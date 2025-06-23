@@ -44,6 +44,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="message" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="trackdata"
+        options={{
+          title: 'Track data',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="thermometer.sun" color={color} />,
+        }}
+      />
     </Tabs>
   );
 }
