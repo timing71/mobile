@@ -163,7 +163,7 @@ export const TimingTable = ({ state }: Props) => {
         </View>
         <ScrollView horizontal>
           {
-            state.manifest.colSpec.slice(2).map(
+            state.manifest.colSpec.slice(1).map(
               (stat, idx) => {
                 return (
                   <View

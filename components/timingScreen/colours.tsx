@@ -154,9 +154,6 @@ export const carStateRow: Record<string, StyleProp<TextStyle>> = {
   FUEL: {
     backgroundColor: '#550000'
   },
-  STOP: {
-    backgroundColor: 'grey'
-  },
   'N/S': {
     color: 'yellow'
   }
@@ -171,9 +168,6 @@ export const carStateRowAlt: Record<string, StyleProp<TextStyle>> = {
   },
   FUEL: {
     backgroundColor: '#5C0000'
-  },
-  STOP: {
-    backgroundColor: 'grey'
   }
 }
 

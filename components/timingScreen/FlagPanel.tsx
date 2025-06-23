@@ -1,6 +1,6 @@
 import { dasherizeParts, FlagState, ServiceState } from '@timing71/common';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import Animated, { cancelAnimation, Easing, interpolateColor, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { flagStates } from './colours';
 
@@ -112,6 +112,15 @@ export const FlagPanel = ({ state }: Props) => {
     const Panel = ANIMATED_PANELS[state.session.flagState];
     return (
       <Panel text={text} />
+    )
+  }
+  else if (state.session.flagState === FlagState.CHEQUERED) {
+    return (
+      <Image
+        resizeMode='repeat'
+        source={require('@/assets/images/chequer.png')}
+        style={{ width: '100%', height: 42 }}
+      />
     )
   }
   else {

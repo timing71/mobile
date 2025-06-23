@@ -1,5 +1,5 @@
 import { Car, StatExtractor, StatType, timeInSeconds } from '@timing71/common';
-import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
+import { Image, ImageStyle, StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import { carStateCell, classColours, modifiers } from './colours';
 
 type Props = {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 
 export const TimingTableCell = ({ car, stat, statExtractor, style }: Props) => {
 
-  const applicableStyles: StyleProp<TextStyle>[] = [
+  const applicableStyles: StyleProp<TextStyle | ImageStyle>[] = [
     style
   ];
 
@@ -47,6 +47,18 @@ export const TimingTableCell = ({ car, stat, statExtractor, style }: Props) => {
   if (stat[0] === 'State') {
     if (carStateCell[value]) {
       applicableStyles.push(carStateCell[value]);
+    }
+
+    if (value === 'FIN') {
+      return (
+        <Image
+          height={30}
+          resizeMode='cover'
+          source={require('@/assets/images/chequer.png')}
+          style={applicableStyles as ImageStyle}
+          width={60}
+        />
+      )
     }
   }
 
