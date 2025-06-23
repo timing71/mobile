@@ -1,5 +1,6 @@
 import {
   ConnectionService as OriginalConnectionService,
+  EventEmitter as OriginalEventEmitter,
   FlagState as OriginalFlagState,
   Service as OriginalService,
   CreateWebsocketOptions as OriginalWSOptions,
@@ -72,6 +73,10 @@ declare module '@timing71/common' {
 
   export interface CreateWebsocketOptions extends OriginalWSOptions {
     protocols?: string[]
+  }
+
+  export class EventEmitter extends OriginalEventEmitter {
+    emit(event: string, data: any)
   }
 
   export class StatExtractor {
