@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    lineHeight: 32,
+    lineHeight: 48,
     fontFamily: 'Play-Bold'
   },
   subtitle: {

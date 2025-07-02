@@ -20,7 +20,8 @@ const MAPPING = {
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
   'message': 'message',
-  'thermometer.sun': 'area-chart'
+  'thermometer.sun': 'area-chart',
+  'play': 'play-arrow'
 } as IconMapping;
 
 /**
