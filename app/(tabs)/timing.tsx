@@ -9,7 +9,7 @@ export default function Timing() {
 
   return (
     <SafeAreaView>
-      <RequiresService>
+      <RequiresService requireState>
         <TimingScreen state={state} />
       </RequiresService>
     </SafeAreaView>
