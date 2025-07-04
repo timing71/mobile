@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
   sbNewRow: {
-    backgroundColor: Colors.app.code60
+    backgroundColor: Colors.app.code60,
+    color: 'black'
   },
   sbNewCell: {
     color: 'black'

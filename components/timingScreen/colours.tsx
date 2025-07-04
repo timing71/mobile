@@ -107,7 +107,7 @@ export const modifiers: Record<string, StyleProp<TextStyle>> = {
     color: '#00FF00'
   },
   sb: {
-    color: '#FF53E3'
+    color: 'black'
   },
   old: {
     color: 'yellow'
