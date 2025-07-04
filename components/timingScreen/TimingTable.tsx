@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
   },
   innerWrapper: {
     flexDirection: 'row',
-    marginBottom: 85 // Bottom tab bar height - TODO move this to the page component
   },
   table: {
     alignItems: 'flex-start'
