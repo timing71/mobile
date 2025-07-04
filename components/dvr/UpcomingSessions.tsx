@@ -45,12 +45,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.app.backgroundAlt,
     flexShrink: 1,
-    marginBottom: 46
+    flexGrow: 1,
+    overflow: 'hidden',
+    minHeight: 0
   },
   title: {
     textAlign: 'center',
     marginVertical: 8
   },
   list: {
+    flexShrink: 1,
+    minHeight: 0
   }
 })

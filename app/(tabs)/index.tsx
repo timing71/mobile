@@ -23,7 +23,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
@@ -38,9 +38,15 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 8,
+    padding: 8,
+    overflow: 'scroll'
+  },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    padding: 8
   }
 });
