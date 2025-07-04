@@ -128,7 +128,7 @@ export const FlagPanel = ({ state }: Props) => {
 
     return (
       <View style={viewStyle}>
-        <Text style={styles.text}>{text}</Text>
+        <Text style={[styles.text, viewStyle]}>{text}</Text>
       </View>
     )
   }
