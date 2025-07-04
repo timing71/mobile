@@ -81,7 +81,7 @@ declare module '@timing71/common' {
 
   export class StatExtractor {
     constructor(colSpec: ColumnSpec)
-    get(car: Car, stat: Stat)
+    get(car: Car, stat: Stat, defaultValue?: any)
   }
 
   export interface Manifest {

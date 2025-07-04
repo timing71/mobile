@@ -34,7 +34,7 @@ export const TimingTableCell = ({ car, stat, statExtractor, style }: Props) => {
   }
 
   if (stat[0] === 'Class') {
-    const carClass = (value as string).toLowerCase().replaceAll(/[-/ ]/g, '');
+    const carClass = (value as string || '').toLowerCase().replaceAll(/[-/ ]/g, '');
 
     if (classColours[carClass]) {
       applicableStyles.push({
